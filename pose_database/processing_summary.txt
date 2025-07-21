@@ -1,0 +1,30 @@
+Yoga Pose Processing Summary
+==============================
+
+Processed at: 2025-07-21 22:14:22
+Total images processed: 18
+Successful extractions: 18
+Success rate: 100.0%
+
+Poses processed:
+  - downward_dog: 6 variation(s)
+    • downward_dog_0.png (24 keypoints)
+    • downward_dog_1.png (22 keypoints)
+    • downward_dog_2.png (25 keypoints)
+    • downward_dog_3.png (27 keypoints)
+    • downward_dog_4.png (24 keypoints)
+    • downward_dog_5.png (24 keypoints)
+  - tree_pose: 6 variation(s)
+    • tree_pose_0.png (20 keypoints)
+    • tree_pose_1.png (21 keypoints)
+    • tree_pose_2.png (32 keypoints)
+    • tree_pose_3.png (23 keypoints)
+    • tree_pose_4.png (27 keypoints)
+    • tree_pose_5.png (33 keypoints)
+  - warrior_2: 6 variation(s)
+    • warrior_pose_0.png (33 keypoints)
+    • warrior_pose_1.png (33 keypoints)
+    • warrior_pose_2.png (33 keypoints)
+    • warrior_pose_3.png (33 keypoints)
+    • warrior_pose_4.png (33 keypoints)
+    • warrior_pose_5.png (33 keypoints)

@@ -1,0 +1,4 @@
+# Positions directory
+# Add your reference pose images here
+# Structure: positions/pose_name/image.jpg
+# Images are private and excluded from git 

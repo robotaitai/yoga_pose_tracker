@@ -1,344 +1,232 @@
-# Yoga Pose Tracker
+# 🧘 Yoga Coach - Voice-Enabled Pose Tracker
 
-A real-time yoga pose detection and tracking system that uses your webcam to identify yoga poses and save session data locally. The system compares your current pose against reference poses using MediaPipe for pose detection.
+Your Personal AI Yoga Instructor with Real-time Voice Feedback
 
-## Features
+## ✨ Features
 
-- **Real-time pose detection** using MediaPipe
-- **Command-line interface** - no GUI required
-- **Local data storage** - all data stored locally, no cloud dependencies
-- **Pose comparison** with customizable similarity thresholds
-- **Session tracking** with automatic data saving
-- **Reference pose capture** functionality
-- **Cross-platform** compatibility (Windows, Mac, Linux)
+- **🎙️ Voice Coaching**: Real-time spoken feedback using macOS text-to-speech
+- **📐 Critical Angle Analysis**: Measures joint angles and provides form corrections
+- **🧘 Smart Pose Recognition**: Detects Tree Pose, Warrior 2, Downward Dog, and more
+- **📊 Performance Tracking**: Session statistics and improvement tracking
+- **🔊 Intelligent Feedback**: Priority-based coaching with breathing reminders
+- **💾 Session Recording**: Saves detailed session data for progress tracking
 
-## Project Structure
+## 🚀 Quick Start
+
+### 1. Setup (First Time Only)
+```bash
+# Run the setup script
+./scripts/setup.sh
+
+# This will:
+# - Create virtual environment
+# - Install all dependencies
+# - Configure VS Code settings
+```
+
+### 2. Add Reference Poses
+Create your pose reference images:
+```
+positions/
+├── tree_pose/
+│   ├── tree1.jpg
+│   └── tree2.png
+├── warrior_2/
+│   ├── warrior1.jpg
+│   └── warrior2.png
+└── downward_dog/
+    ├── dog1.jpg
+    └── dog2.png
+```
+
+### 3. Start Yoga Coaching
+```bash
+# Run the main application
+./run_yoga_coach.sh
+
+# Or manually:
+source venv/bin/activate
+python yoga_coach.py
+```
+
+## 🎯 How It Works
+
+1. **Camera opens** - Position yourself in front of the camera
+2. **Voice coaching begins** - Your computer will speak guidance
+3. **Pose detection** - AI recognizes your yoga poses in real-time
+4. **Form analysis** - Critical angles are measured (knee bends, spine alignment, etc.)
+5. **Voice feedback** - Immediate spoken corrections and encouragement
+6. **Session tracking** - Performance data is saved automatically
+
+## 🔊 Voice Coaching Examples
+
+- *"Entering Tree Pose. Focus on your alignment."*
+- *"Critical adjustment: Straighten your standing leg more."*
+- *"Excellent form! Beautiful pose."*
+- *"Remember to breathe deeply. Inhale strength, exhale tension."*
+- *"Session complete! You practiced 3 poses with an average score of 82 percent."*
+
+## 📁 Project Structure
 
 ```
 yoga_pose_tracker/
-├── positions/          # Reference pose data
-│   ├── warrior_2/
-│   │   ├── ref1.json
-│   │   └── ref2.json
-│   ├── downward_dog/
-│   │   └── ref1.json
-│   ├── tree_pose/
-│   │   └── ref1.json
-│   └── [add more poses here]
-├── sessions/           # Session data (auto-generated)
-│   └── [session files with timestamps]
-├── main.py            # Main application entry point
-├── pose_utils.py      # Core pose detection and comparison logic
-├── requirements.txt   # Python dependencies
-└── README.md         # This file
+├── 🧘 yoga_coach.py          # Main voice-enabled application
+├── 🛠️ pose_utils.py           # Core pose detection and comparison
+├── 📐 angle_analyzer.py       # Critical angle analysis and feedback
+├── 💾 pose_database.py        # Optimized pose database system
+├── ⚙️ requirements.txt        # Python dependencies
+├── 🚀 run_yoga_coach.sh       # Main run script
+│
+├── 📁 scripts/               # Utility scripts
+│   ├── setup.sh             # Environment setup
+│   └── process_images.py    # Image processing for pose database
+│
+├── 📁 tests/                # Debug and testing tools
+│   └── debug_poses.py       # Pose recognition troubleshooting
+│
+├── 📁 positions/            # Reference pose images (you add these)
+├── 📁 sessions/             # Saved session data
+├── 📁 pose_database/        # Processed pose database
+└── 📁 venv/                 # Python virtual environment
 ```
 
-## Requirements
+## 🎮 Usage Instructions
 
-- Python 3.7 or higher
-- Webcam/camera connected to your computer
-- Operating System: Windows, macOS, or Linux
+### During Your Session
 
-## Installation
+- **Position yourself** fully in the camera frame
+- **Listen for voice guidance** as you practice poses
+- **Hold poses** for 5-10 seconds to get detailed feedback
+- **Follow voice corrections** for better form
+- **Press 'q'** in the camera window to end session
 
-### Option 1: Automated Setup (Recommended)
+### Pose Requirements
 
-1. **Clone or download** this project to your local machine
+For best recognition:
+- **Full body visible** in camera frame
+- **Good lighting** and uncluttered background
+- **Hold poses steadily** for at least 5 seconds
+- **Face the camera** for frontal poses
 
-2. **Navigate** to the project directory:
-   ```bash
-   cd yoga_pose_tracker
-   ```
+## 🔧 Advanced Usage
 
-3. **Run the setup script**:
-   ```bash
-   ./setup.sh
-   ```
+### Adding New Poses
 
-This will automatically:
-- Create a virtual environment using Python 3.9
-- Install all required dependencies with compatible versions
-- Configure VS Code settings for automatic environment detection
-- Set up scripts for easy activation
+1. Create a new directory in `positions/` (e.g., `positions/new_pose/`)
+2. Add reference images of the pose
+3. Run: `python scripts/process_images.py`
+4. Restart yoga coach
 
-### Option 2: Manual Setup
-
-1. **Create a virtual environment**:
-   ```bash
-   /usr/bin/python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install opencv-python numpy
-   pip install mediapipe --no-compile
-   ```
-
-   *Note: The `--no-compile` flag is needed for MediaPipe compatibility with some Python versions.*
-
-### Option 3: Quick Setup Check
-
-If the environment is already set up, you can verify everything works:
-```bash
-./run.sh --help
-```
-
-## Usage
-
-### Automatic Environment Activation
-
-The project supports several ways to automatically activate the virtual environment:
-
-#### Option 1: Use the run script (Simplest)
-```bash
-./run.sh                    # Start pose tracking
-./run.sh --capture         # Capture new reference poses
-```
-
-#### Option 2: Use the activation script
-```bash
-source activate.sh         # Activates venv and starts a new shell
-python main.py             # Run the tracker
-```
-
-#### Option 3: Use direnv (Auto-activation when entering directory)
-```bash
-# First time setup
-brew install direnv        # or install via your package manager
-direnv allow              # Allow direnv to activate the environment
-
-# Now the environment activates automatically when you cd into the directory
-cd yoga_pose_tracker      # Environment auto-activates
-python main.py            # Ready to run!
-```
-
-#### Option 4: Manual activation
-```bash
-source venv/bin/activate   # Activate manually
-python main.py            # Run the tracker
-```
-
-### Basic Pose Tracking
-
-To start the yoga pose tracker:
+### Troubleshooting
 
 ```bash
-./run.sh                   # Using run script (recommended)
-# OR
-python main.py            # If environment is already activated
+# Debug pose recognition issues
+python tests/debug_poses.py
+
+# Check system status
+python -c "import cv2, mediapipe as mp; print('✅ All systems ready')"
+
+# Re-process images if poses not recognized
+python scripts/process_images.py
 ```
 
-**Instructions:**
-1. Position yourself in front of your webcam
-2. The camera window will open showing your live feed
-3. Perform yoga poses - detected poses will be displayed on screen and in the terminal
-4. Press 'q' in the camera window to stop and save your session
+### Voice Settings
 
-**Console Output Example:**
-```
-[00:00:05] Detected pose: warrior_2 (score: 0.082)
-[00:00:12] Detected pose: downward_dog (score: 0.156)
-[00:00:18] Detected pose: tree_pose (score: 0.093)
-[00:00:25] Detected pose: unknown
-```
+Edit `yoga_coach.py` to customize:
+- Speech rate: `YogaVoiceCoach(speech_rate=180)`
+- Feedback frequency: Adjust `feedback_cooldown` value
+- Breathing reminders: Modify reminder interval
 
-### Capturing Reference Poses
+## 📊 Performance Metrics
 
-To add new reference poses to your collection:
+The system tracks:
+- **Form scores** (0-100%) for each pose
+- **Critical angle measurements** (degrees)
+- **Session duration** and poses practiced
+- **Improvement trends** over time
+- **Best poses** and personal records
 
-```bash
-./run.sh --capture         # Using run script (recommended)
-# OR
-python main.py --capture   # If environment is already activated
-```
+## 🔍 Troubleshooting
 
-This will start an interactive pose capture session where you can:
-1. Enter the name of a new pose
-2. Position yourself in that pose
-3. Press SPACE to capture the pose
-4. The pose will be automatically saved to the `positions/` directory
+### Common Issues
 
-## Data Formats
+**❌ "No pose detected"**
+- Ensure full body is visible in camera
+- Check lighting and background
+- Run `python tests/debug_poses.py`
 
-### Reference Pose Format
+**❌ "Voice not working"**
+- macOS only - uses built-in `say` command
+- Check system audio settings
+- Voice will fallback to text display
 
-Each reference pose is stored as a JSON file in `positions/[pose_name]/`:
+**❌ "No reference poses found"**
+- Add images to `positions/` directory
+- Run `python scripts/process_images.py`
+- Check image formats (jpg, png supported)
 
-```json
-{
-  "pose_name": "warrior_2",
-  "keypoints": {
-    "left_shoulder": [0.400, 0.280],
-    "right_shoulder": [0.600, 0.280],
-    "left_hip": [0.430, 0.520],
-    "right_hip": [0.570, 0.520],
-    ...
-  }
-}
-```
+**❌ "Virtual environment not found"**
+- Run `./scripts/setup.sh` first
+- Ensure you're in the project directory
 
-Coordinates are normalized (0.0 to 1.0) relative to image dimensions.
+## 🎯 Tips for Best Results
 
-### Session Data Format
+### Pose Performance
+- Start with basic poses (Tree, Warrior 2)
+- Hold poses steadily for detailed analysis
+- Focus on one improvement at a time
+- Practice regularly for progress tracking
 
-Session data is automatically saved to `sessions/session_YYYY-MM-DD_HH-MM-SS.json`:
+### Camera Setup
+- Position camera at chest height
+- Ensure stable lighting
+- Clear background behind you
+- Stay within camera frame boundaries
 
-```json
-{
-  "session_start": "2024-01-15 14:30:25",
-  "session_end": "2024-01-15 14:35:12",
-  "duration_seconds": 287,
-  "total_frames": 8610,
-  "frames": [
-    {
-      "timestamp": "14:30:26.123",
-      "frame_number": 10,
-      "detected_pose": "warrior_2",
-      "similarity_score": 0.082,
-      "keypoints": {
-        "left_shoulder": [0.398, 0.285],
-        ...
-      }
-    }
-  ]
-}
-```
+### Voice Coaching
+- Keep speakers/headphones on
+- Follow voice guidance patiently
+- Don't rush between pose corrections
+- Listen for breathing reminders
 
-## Adding New Poses
+## 🛠️ Technical Requirements
 
-### Method 1: Using the Capture Tool (Recommended)
+- **macOS** (for voice synthesis)
+- **Python 3.8+**
+- **Webcam**
+- **Speakers or headphones**
+- **Good lighting** for pose detection
 
-1. Run the capture tool:
-   ```bash
-   python main.py --capture
-   ```
+### Dependencies
+- OpenCV (computer vision)
+- MediaPipe (pose detection)
+- NumPy (numerical processing)
+- Built-in macOS text-to-speech
 
-2. Enter the pose name when prompted
-3. Position yourself in the pose
-4. Press SPACE to capture
+## 📈 Session Data
 
-### Method 2: Manual Creation
+Sessions are automatically saved to `sessions/` with:
+- Timestamp and duration
+- Detected poses and form scores
+- Critical angle measurements
+- Performance statistics
+- Keypoint data for analysis
 
-1. Create a new folder in `positions/` with your pose name (use underscores instead of spaces)
-2. Create reference JSON files following the format above
-3. You can capture keypoints using any MediaPipe pose detection script
+## 🧘 Getting Started with Yoga
 
-### Method 3: Using the Helper Function
+New to yoga? The system includes beginner-friendly feedback:
+- **Tree Pose**: Focus on balance and alignment
+- **Warrior 2**: Work on leg strength and hip opening
+- **Downward Dog**: Build upper body and core strength
 
-You can also use the capture function programmatically:
+Listen to the voice coaching for proper form guidance!
 
-```python
-from pose_utils import PoseDataManager, capture_reference_pose
+## 🎉 Enjoy Your Practice!
 
-data_manager = PoseDataManager()
-success = capture_reference_pose("my_new_pose", data_manager)
-```
+Your personal AI yoga instructor is ready to help you improve your practice with real-time voice coaching and intelligent form analysis. 
 
-## Configuration
-
-### Similarity Threshold
-
-You can adjust the pose matching sensitivity by modifying the `similarity_threshold` parameter in `main.py`:
-
-```python
-comparator = PoseComparator(similarity_threshold=0.15)  # Lower = more strict
-```
-
-- **Lower values** (0.05-0.10): More strict matching, fewer false positives
-- **Higher values** (0.20-0.30): More lenient matching, may catch variations better
-
-### Camera Settings
-
-Modify camera properties in `main.py`:
-
-```python
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)   # Width
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Height
-cap.set(cv2.CAP_PROP_FPS, 30)            # Frame rate
-```
-
-## Troubleshooting
-
-### Camera Issues
-
-**Problem**: "Error: Could not open webcam!"
-- **Solution**: Ensure your camera is connected and not being used by another application
-- Try changing the camera index: `cv2.VideoCapture(1)` instead of `cv2.VideoCapture(0)`
-
-### Performance Issues
-
-**Problem**: Slow performance or high CPU usage
-- **Solution**: Reduce camera resolution or frame rate in the camera settings
-- Close other applications using the camera
-
-### Pose Detection Issues
-
-**Problem**: "No pose detected" frequently appears
-- **Solution**: Ensure good lighting and that your full body is visible in the camera
-- Stand further back from the camera to capture your full body
-- Ensure there's good contrast between you and the background
-
-### Import Errors
-
-**Problem**: `ImportError` for mediapipe, cv2, or numpy
-- **Solution**: Reinstall dependencies: `pip install -r requirements.txt`
-- Try using a virtual environment: `python -m venv venv && source venv/bin/activate`
-
-## Technical Details
-
-### Pose Comparison Algorithm
-
-The system uses a normalized joint distance algorithm:
-
-1. **Normalization**: Poses are normalized using hip center and torso length
-2. **Key Joints**: Focuses on main body joints (shoulders, elbows, wrists, hips, knees, ankles)
-3. **Distance Calculation**: Uses Euclidean distance between corresponding joints
-4. **Similarity Score**: Mean squared error of joint distances (lower = more similar)
-
-### MediaPipe Integration
-
-- Uses MediaPipe Pose for real-time pose detection
-- Extracts 33 body landmarks with normalized coordinates
-- Optimized for real-time performance with tracking
-
-## Project Scripts
-
-The project includes several convenience scripts for easy setup and usage:
-
-- **`setup.sh`** - Complete project setup (creates venv, installs dependencies, configures VS Code)
-- **`run.sh`** - Quick run script with automatic environment activation
-- **`activate.sh`** - Manual environment activation script  
-- **`.envrc`** - direnv configuration for automatic activation when entering directory
-
-## Contributing
-
-To add new features or improve the system:
-
-1. The core pose detection is in `PoseDetector` class
-2. Pose comparison logic is in `PoseComparator` class  
-3. Data management is handled by `PoseDataManager` class
-4. Main application flow is in `main.py`
-
-## Limitations
-
-- Requires good lighting and clear view of the person
-- Works best with full-body poses where major joints are visible
-- Similarity scoring may need adjustment for different pose types
-- Single-person detection only
-
-## Future Enhancements
-
-- Multiple pose variations per reference pose
-- Better pose similarity algorithms (angle-based comparison)
-- Pose sequence tracking
-- Performance analytics and progress tracking
-- Export to different data formats
-
-## License
-
-This project is open source. Feel free to modify and distribute as needed.
+**Namaste!** 🙏
 
 ---
 
-For questions or issues, please check the troubleshooting section above or refer to the code comments for implementation details. # yoga_pose_tracker
+*For technical support or feature requests, check the troubleshooting section or run the debug tools.*
