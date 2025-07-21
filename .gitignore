@@ -68,6 +68,10 @@ positions/*
 !positions/.gitkeep
 !positions/README.md
 
+# Performance tracking data (personal data)
+data/
+!data/.gitkeep
+
 # Temporary files
 *.tmp
 *.temp

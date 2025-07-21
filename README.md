@@ -1,232 +1,319 @@
-# 🧘 Yoga Coach - Voice-Enabled Pose Tracker
+# 🧘 Yoga Pose Tracker with Performance-Focused Voice Coaching
 
-Your Personal AI Yoga Instructor with Real-time Voice Feedback
+Your Personal AI Yoga Instructor with **Achievement-Based Feedback**
 
-## ✨ Features
+## 🎯 **What Makes This Special**
 
-- **🎙️ Voice Coaching**: Real-time spoken feedback using macOS text-to-speech
-- **📐 Critical Angle Analysis**: Measures joint angles and provides form corrections
-- **🧘 Smart Pose Recognition**: Detects Tree Pose, Warrior 2, Downward Dog, and more
-- **📊 Performance Tracking**: Session statistics and improvement tracking
-- **🔊 Intelligent Feedback**: Priority-based coaching with breathing reminders
-- **💾 Session Recording**: Saves detailed session data for progress tracking
-
-## 🚀 Quick Start
-
-### 1. Setup (First Time Only)
-```bash
-# Run the setup script
-./scripts/setup.sh
-
-# This will:
-# - Create virtual environment
-# - Install all dependencies
-# - Configure VS Code settings
-```
-
-### 2. Add Reference Poses
-Create your pose reference images:
-```
-positions/
-├── tree_pose/
-│   ├── tree1.jpg
-│   └── tree2.png
-├── warrior_2/
-│   ├── warrior1.jpg
-│   └── warrior2.png
-└── downward_dog/
-    ├── dog1.jpg
-    └── dog2.png
-```
-
-### 3. Start Yoga Coaching
-```bash
-# Run the main application
-./run_yoga_coach.sh
-
-# Or manually:
-source venv/bin/activate
-python yoga_coach.py
-```
-
-## 🎯 How It Works
-
-1. **Camera opens** - Position yourself in front of the camera
-2. **Voice coaching begins** - Your computer will speak guidance
-3. **Pose detection** - AI recognizes your yoga poses in real-time
-4. **Form analysis** - Critical angles are measured (knee bends, spine alignment, etc.)
-5. **Voice feedback** - Immediate spoken corrections and encouragement
-6. **Session tracking** - Performance data is saved automatically
-
-## 🔊 Voice Coaching Examples
-
-- *"Entering Tree Pose. Focus on your alignment."*
-- *"Critical adjustment: Straighten your standing leg more."*
-- *"Excellent form! Beautiful pose."*
-- *"Remember to breathe deeply. Inhale strength, exhale tension."*
-- *"Session complete! You practiced 3 poses with an average score of 82 percent."*
-
-## 📁 Project Structure
-
-```
-yoga_pose_tracker/
-├── 🧘 yoga_coach.py          # Main voice-enabled application
-├── 🛠️ pose_utils.py           # Core pose detection and comparison
-├── 📐 angle_analyzer.py       # Critical angle analysis and feedback
-├── 💾 pose_database.py        # Optimized pose database system
-├── ⚙️ requirements.txt        # Python dependencies
-├── 🚀 run_yoga_coach.sh       # Main run script
-│
-├── 📁 scripts/               # Utility scripts
-│   ├── setup.sh             # Environment setup
-│   └── process_images.py    # Image processing for pose database
-│
-├── 📁 tests/                # Debug and testing tools
-│   └── debug_poses.py       # Pose recognition troubleshooting
-│
-├── 📁 positions/            # Reference pose images (you add these)
-├── 📁 sessions/             # Saved session data
-├── 📁 pose_database/        # Processed pose database
-└── 📁 venv/                 # Python virtual environment
-```
-
-## 🎮 Usage Instructions
-
-### During Your Session
-
-- **Position yourself** fully in the camera frame
-- **Listen for voice guidance** as you practice poses
-- **Hold poses** for 5-10 seconds to get detailed feedback
-- **Follow voice corrections** for better form
-- **Press 'q'** in the camera window to end session
-
-### Pose Requirements
-
-For best recognition:
-- **Full body visible** in camera frame
-- **Good lighting** and uncluttered background
-- **Hold poses steadily** for at least 5 seconds
-- **Face the camera** for frontal poses
-
-## 🔧 Advanced Usage
-
-### Adding New Poses
-
-1. Create a new directory in `positions/` (e.g., `positions/new_pose/`)
-2. Add reference images of the pose
-3. Run: `python scripts/process_images.py`
-4. Restart yoga coach
-
-### Troubleshooting
-
-```bash
-# Debug pose recognition issues
-python tests/debug_poses.py
-
-# Check system status
-python -c "import cv2, mediapipe as mp; print('✅ All systems ready')"
-
-# Re-process images if poses not recognized
-python scripts/process_images.py
-```
-
-### Voice Settings
-
-Edit `yoga_coach.py` to customize:
-- Speech rate: `YogaVoiceCoach(speech_rate=180)`
-- Feedback frequency: Adjust `feedback_cooldown` value
-- Breathing reminders: Modify reminder interval
-
-## 📊 Performance Metrics
-
-The system tracks:
-- **Form scores** (0-100%) for each pose
-- **Critical angle measurements** (degrees)
-- **Session duration** and poses practiced
-- **Improvement trends** over time
-- **Best poses** and personal records
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-**❌ "No pose detected"**
-- Ensure full body is visible in camera
-- Check lighting and background
-- Run `python tests/debug_poses.py`
-
-**❌ "Voice not working"**
-- macOS only - uses built-in `say` command
-- Check system audio settings
-- Voice will fallback to text display
-
-**❌ "No reference poses found"**
-- Add images to `positions/` directory
-- Run `python scripts/process_images.py`
-- Check image formats (jpg, png supported)
-
-**❌ "Virtual environment not found"**
-- Run `./scripts/setup.sh` first
-- Ensure you're in the project directory
-
-## 🎯 Tips for Best Results
-
-### Pose Performance
-- Start with basic poses (Tree, Warrior 2)
-- Hold poses steadily for detailed analysis
-- Focus on one improvement at a time
-- Practice regularly for progress tracking
-
-### Camera Setup
-- Position camera at chest height
-- Ensure stable lighting
-- Clear background behind you
-- Stay within camera frame boundaries
-
-### Voice Coaching
-- Keep speakers/headphones on
-- Follow voice guidance patiently
-- Don't rush between pose corrections
-- Listen for breathing reminders
-
-## 🛠️ Technical Requirements
-
-- **macOS** (for voice synthesis)
-- **Python 3.8+**
-- **Webcam**
-- **Speakers or headphones**
-- **Good lighting** for pose detection
-
-### Dependencies
-- OpenCV (computer vision)
-- MediaPipe (pose detection)
-- NumPy (numerical processing)
-- Built-in macOS text-to-speech
-
-## 📈 Session Data
-
-Sessions are automatically saved to `sessions/` with:
-- Timestamp and duration
-- Detected poses and form scores
-- Critical angle measurements
-- Performance statistics
-- Keypoint data for analysis
-
-## 🧘 Getting Started with Yoga
-
-New to yoga? The system includes beginner-friendly feedback:
-- **Tree Pose**: Focus on balance and alignment
-- **Warrior 2**: Work on leg strength and hip opening
-- **Downward Dog**: Build upper body and core strength
-
-Listen to the voice coaching for proper form guidance!
-
-## 🎉 Enjoy Your Practice!
-
-Your personal AI yoga instructor is ready to help you improve your practice with real-time voice coaching and intelligent form analysis. 
-
-**Namaste!** 🙏
+✅ **Performance-Focused Narrator** - Only speaks on achievements and improvements  
+✅ **Real Data Tracking** - Saves your actual angle measurements and personal bests  
+✅ **Historical Comparison** - Compares current form to your own progress  
+✅ **Achievement Celebration** - *"New personal best! 178.3 degrees - that's 2.1 degrees better!"*  
+✅ **Privacy First** - All data stored locally, never shared  
 
 ---
 
-*For technical support or feature requests, check the troubleshooting section or run the debug tools.*
+## 🚀 **Quick Start**
+
+### **Option 1: Simple Version (Works Immediately)**
+```bash
+python yoga_coach_simple.py
+```
+- ✅ Real angle measurements and data saving
+- 🎯 Achievement-focused narrator 
+- 📊 Personal best tracking
+- 🔊 Uses macOS `say` command
+
+### **Option 2: Full Version (Advanced)**
+```bash
+./scripts/install_yaml.sh    # Install PyYAML first
+./run_yoga_coach.sh          # Run full system
+```
+- 📈 Historical trend analysis (30-day averages)
+- ⚙️ YAML configuration (fully customizable)
+- 📊 Advanced performance statistics
+- 🎯 Sophisticated achievement detection
+
+---
+
+## 📊 **What the Narrator Says**
+
+### **🔊 Example Voice Feedback:**
+```
+🎙️ "Outstanding! New personal best standing leg in Tree Pose: 
+     178.3 degrees! That's 1.4 degrees better than your 
+     previous best of 176.9!"
+
+🎙️ "Great improvement! Your front knee is 3.2 degrees better 
+     than your average of 89.1. Current: 92.3 degrees!"
+
+🎙️ "Excellent form! Standing leg in Tree Pose: 178.3 degrees - 
+     very precise!"
+```
+
+### **📱 Console Output:**
+```
+📐 REAL ANGLE DATA SAVED:
+   🎯 standing leg: 178.3°
+   🏆 Personal best: 178.3°
+   📊 Total tree_pose measurements: 7
+   💾 Saved to: data/simple_history.json
+```
+
+---
+
+## 🗂️ **Project Structure**
+
+```
+yoga_pose_tracker/
+├── 🧘 MAIN APPLICATIONS
+│   ├── yoga_coach_simple.py       # ⭐ Simple version (recommended start)
+│   ├── yoga_coach_performance.py  # 📊 Full version with history
+│   └── run_yoga_coach.sh          # 🚀 Auto-launcher script
+│
+├── 📊 CORE MODULES  
+│   ├── pose_utils.py              # 👁️ Pose detection & comparison
+│   ├── angle_analyzer.py          # 📐 Critical angle analysis
+│   ├── pose_database.py           # 🗄️ Optimized pose matching
+│   ├── performance_tracker.py     # 📈 Historical data tracking
+│   └── performance_narrator.py    # 🎙️ Achievement-focused voice
+│
+├── ⚙️ CONFIGURATION
+│   ├── config.yaml               # 🔧 YAML settings (full version)
+│   ├── requirements.txt          # 📦 Python dependencies
+│   └── .gitignore               # 🚫 Privacy protection
+│
+├── 📁 DIRECTORIES
+│   ├── data/                    # 📊 Your performance data (PRIVATE)
+│   ├── sessions/                # 💾 Session recordings (PRIVATE)  
+│   ├── positions/               # 📸 Reference pose images (PRIVATE)
+│   ├── pose_database/           # 🗄️ Processed pose data
+│   ├── scripts/                 # 🛠️ Utility scripts
+│   ├── tests/                   # 🧪 Debug tools
+│   ├── archive/                 # 📁 Old versions
+│   └── docs/                    # 📚 Documentation
+│
+└── 📚 DOCUMENTATION
+    ├── README.md                # 📖 This file
+    └── docs/DATA_STORAGE.md     # 📊 Data storage guide
+```
+
+---
+
+## 💾 **Your Data is Saved Here**
+
+All your practice data is stored **locally and privately**:
+
+- **`data/simple_history.json`** - Every angle measurement
+- **`data/simple_bests.json`** - Your personal best records  
+- **`sessions/session_*.json`** - Complete session recordings
+- **`positions/`** - Your reference pose images
+
+**View your data:** `python scripts/check_my_data.py`
+
+---
+
+## 🛠️ **Setup & Installation**
+
+### **Prerequisites:**
+- Python 3.9+ 
+- macOS (for voice synthesis)
+- Webcam
+
+### **Installation:**
+```bash
+# Clone or download this project
+cd yoga_pose_tracker
+
+# Option 1: Quick setup (simple version)
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python yoga_coach_simple.py
+
+# Option 2: Full setup (all features)  
+./scripts/setup.sh
+./scripts/install_yaml.sh
+./run_yoga_coach.sh
+```
+
+---
+
+## 🎯 **Narrator Behavior**
+
+### **When the Narrator Speaks:**
+- ✅ **High confidence poses** (85%+ similarity)
+- ✅ **Personal best angles** achieved
+- ✅ **Daily best** measurements
+- ✅ **Significant improvements** vs your average
+- ✅ **Excellent form** (within 5° of target)
+
+### **When the Narrator is Silent:**
+- 🔇 Low confidence pose detection
+- 🔇 Normal/average measurements  
+- 🔇 During cooldown periods (10s default)
+- 🔇 Unknown poses
+
+### **Configuration:**
+Edit `config.yaml` to customize:
+- Confidence thresholds
+- Feedback frequency  
+- Voice messages
+- Tracked angles per pose
+
+---
+
+## 📸 **Setting Up Reference Poses**
+
+1. **Add your pose images:**
+   ```
+   positions/
+   ├── tree_pose/
+   │   ├── tree1.jpg
+   │   └── tree2.png  
+   ├── warrior_2/
+   └── downward_dog/
+   ```
+
+2. **Process images:**
+   ```bash
+   python scripts/process_images.py
+   ```
+
+3. **Start practicing:**
+   ```bash
+   python yoga_coach_simple.py
+   ```
+
+---
+
+## 🎛️ **Scripts & Utilities**
+
+- **`scripts/setup.sh`** - Complete project setup
+- **`scripts/install_yaml.sh`** - Install PyYAML for full version
+- **`scripts/process_images.py`** - Convert images to pose database  
+- **`scripts/check_my_data.py`** - View your saved data
+- **`scripts/view_my_data.py`** - Detailed data analysis
+
+---
+
+## 🔧 **Troubleshooting**
+
+### **"No module named 'yaml'"**
+```bash
+./scripts/install_yaml.sh
+# OR use simple version: python yoga_coach_simple.py
+```
+
+### **Voice not working**
+- The narrator will show text output if voice fails
+- Simple version uses macOS `say` command (very reliable)
+- Full version requires PyYAML + proper config
+
+### **Poses not recognized**
+```bash
+# Process your reference images first
+python scripts/process_images.py
+
+# Check pose database
+ls pose_database/
+
+# Debug pose detection
+python tests/debug_poses.py
+```
+
+### **No data being saved**
+```bash
+# Check if data directory exists
+python scripts/check_my_data.py
+
+# Simple version auto-creates data/ directory
+# Make sure you're holding poses for 3+ seconds with 85%+ confidence
+```
+
+---
+
+## 🔒 **Privacy & Data**
+
+- 🏠 **100% Local** - No cloud, no servers, no internet required
+- 🔒 **Private by Default** - Your data never leaves your computer  
+- 📊 **Git-Ignored** - Personal data excluded from version control
+- 💾 **Backup Friendly** - Standard JSON files, easy to backup
+
+**Read more:** [`docs/DATA_STORAGE.md`](docs/DATA_STORAGE.md)
+
+---
+
+## 🎯 **Performance Tracking Examples**
+
+### **Personal Best Celebration:**
+```
+🎙️ "Outstanding! New personal best standing leg in Tree Pose: 
+     178.3 degrees! That's 1.4 degrees better than your 
+     previous best of 176.9!"
+```
+
+### **Improvement Recognition:**
+```  
+🎙️ "Excellent progress! Your front knee is 3.2 degrees better 
+     than your 30-day average of 89.2 degrees. 
+     Current measurement: 92.4 degrees!"
+```
+
+### **Daily Achievement:**
+```
+🎙️ "Great work! Best knee angle today: 92.4 degrees in Warrior Two!"
+```
+
+---
+
+## 🧘 **Supported Poses**
+
+Currently optimized for:
+- **Tree Pose** - Standing leg stability, lifted leg position, spine alignment
+- **Warrior II** - Front knee angle, back leg extension, hip alignment  
+- **Downward Dog** - Shoulder angle, hip position, leg extension
+
+**Adding new poses:** Place reference images in `positions/{pose_name}/` and run `scripts/process_images.py`
+
+---
+
+## 🏆 **Achievement System**
+
+The narrator celebrates:
+- **🥇 Personal Bests** - All-time best angles
+- **🎯 Daily Bests** - Best today  
+- **📈 Improvements** - Better than your average
+- **✨ Excellent Form** - Near-perfect alignment
+- **🎉 First Measurements** - Building your baseline
+
+---
+
+## 🔮 **Future Features**
+
+- 📊 Progress visualization charts
+- 📱 Mobile app integration  
+- 🤝 Multiple pose sequences
+- 🎯 Custom target angles
+- 📈 Weekly/monthly progress reports
+
+---
+
+## 🤝 **Contributing**
+
+This project is designed to be your personal yoga coach. Feel free to:
+- Add new poses and reference images
+- Customize the narrator messages  
+- Adjust angle tracking for your needs
+- Share improvements (without personal data)
+
+---
+
+## ✨ **Happy Practicing!**
+
+Your AI yoga coach is ready to track your progress and celebrate your achievements! 
+
+**Start simple:** `python yoga_coach_simple.py`  
+**Go advanced:** `./run_yoga_coach.sh`  
+**Check progress:** `python scripts/check_my_data.py`
+
+🧘‍♀️ **Namaste!** 🏆

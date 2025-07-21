@@ -1,0 +1,69 @@
+# 🧘 Yoga Coach - Configuration File
+
+# Pose Detection Settings
+pose_detection:
+  similarity_threshold: 0.20        # How similar pose must be to reference (lower = stricter)
+  confidence_threshold: 0.85        # Minimum confidence to trigger narrator (0-1)
+  min_hold_time: 3.0               # Seconds to hold pose before analysis
+  
+# Narrator Behavior  
+narrator:
+  enabled: true
+  speech_rate: 180                 # Words per minute
+  volume: 0.8                      # Volume level (0-1)
+  
+  # When to speak
+  speak_on_entry: false            # Don't announce pose entry
+  speak_on_performance: true       # Speak about performance only
+  speak_on_improvement: true       # Celebrate improvements
+  speak_on_personal_best: true     # Celebrate new personal bests
+  
+  # Feedback frequency
+  feedback_cooldown: 10.0          # Seconds between feedback for same pose
+  daily_summary: true              # Give daily summary at end
+  
+# Performance Tracking
+performance:
+  track_angles: true               # Track angle measurements
+  track_daily_bests: true          # Track daily best performances
+  track_weekly_trends: true        # Track weekly improvement trends
+  
+  # Historical comparison
+  compare_to_history: true         # Compare current to historical performance
+  history_days: 30                 # Days of history to consider
+  improvement_threshold: 2.0       # Degrees improvement to celebrate
+  
+  # Angles to track per pose
+  tracked_angles:
+    tree_pose:
+      - standing_leg                # Main angles to track and compare
+      - lifted_leg
+      - spine_vertical
+    warrior_2:
+      - front_knee
+      - back_leg  
+      - hip_alignment
+    downward_dog:
+      - shoulder_angle
+      - hip_angle
+      - leg_extension
+
+# Session Settings
+session:
+  auto_save: true                  # Automatically save session data
+  save_frequency: 30               # Save every N seconds
+  min_session_time: 60             # Minimum seconds for valid session
+  
+# Data Storage
+storage:
+  performance_file: "data/performance_history.json"
+  daily_stats_file: "data/daily_stats.json" 
+  personal_bests_file: "data/personal_bests.json"
+  
+# Voice Messages (templates)
+voice_messages:
+  personal_best: "Excellent! New personal best for {pose} {angle}: {current_angle:.1f} degrees!"
+  improvement: "Great progress! Your {angle} is {improvement:.1f} degrees better than your average."
+  daily_best: "That's your best {angle} today - {current_angle:.1f} degrees!"
+  encouragement: "Nice form! Your {angle} is looking consistent."
+  session_summary: "Session complete! You achieved {num_improvements} improvements today." 
